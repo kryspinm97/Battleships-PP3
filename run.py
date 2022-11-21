@@ -20,13 +20,26 @@ class Board:
 
     def __init__(self, board):
         self.board = board
-    
 
     def print_board(self):
         print(" A B C D E F G H I J ")
         number_of_row = 1
         for row in self.board:
-            print("%d|%s" % (number_of_row, " | " .join(row))
+            print("%d|%s" % (number_of_row, " | " .join(row)))
             number_of_row += 1
 
+    def columns_to_rows():
+        col_to_row = {  "A" : 0,
+                        "B" : 1,
+                        "C" : 2,
+                        "D" : 3,
+                        "E" : 4,
+                        "F" : 5,
+                        "G" : 6,
+                        "H" : 7,
+                        "I" : 8,
+                        "J" : 9,
+        }
 
+        return col_to_row
+    
