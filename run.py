@@ -17,8 +17,13 @@ import random # Random for the random placement of the ships on the board
 
 
 class Board:
+    """
+    Board Class that contains our print board function
+    and the assignment of the Column Letters to Row Numbers.
 
-    def __init__(self, board):
+    """
+
+    def __init__(self, board): 
         self.board = board
 
     def print_board(self):
@@ -29,17 +34,29 @@ class Board:
             number_of_row += 1
 
     def columns_to_rows():
-        col_to_row = {  "A" : 0,
-                        "B" : 1,
-                        "C" : 2,
-                        "D" : 3,
-                        "E" : 4,
-                        "F" : 5,
-                        "G" : 6,
-                        "H" : 7,
-                        "I" : 8,
-                        "J" : 9,
-        }
+        col_to_row = {  "A": 0,
+                        "B": 1,
+                        "C": 2,
+                        "D": 3,
+                        "E": 4,
+                        "F": 5,
+                        "G": 6,
+                        "H": 7,
+                        "I": 8,
+                        "J": 9,
+                     }
 
         return col_to_row
+
+class Ships:
+    """
+    Ships class that will contain the random placement of ships along the board.
+    Get the user input for the row / column
+    Validation of inputs by the user
+    
+    """
+
+    def __init__(self, board):
+        self.board = board
+
     
