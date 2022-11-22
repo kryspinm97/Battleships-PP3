@@ -59,6 +59,23 @@ class Ships:
     def __init__(self, board):
         self.board = board
 
+    def user_input(self):
+        try:
+            number_of_row = input("Please enter the row number of the ship: ")
+            while number_of_row not in "0123456789":
+                print("Invalid Input! Please input a number between 0 and 9")
+                number_of_row = input("Please enter the row number of the ship: ")
+            
+            letter_of_column = input("Please enter the column letter of the ship: ")
+            while letter_of_column not in "ABCDEFGHIJ":
+                print("Invalid Input!, Please enter a letter between A and J ")
+                letter_of_column = input("Please enter the column letter of the ship: ")
+            return int(number_of_row), Board.columns_to_rows()[letter_of_column]
+        except ValueError and KeyError:
+            print("Invalid Input!")
+            return self.user_input()
+
+
     
     def random_ships(self):
         for i in range(6):
