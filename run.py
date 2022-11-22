@@ -116,9 +116,9 @@ def Game():
         """
         Checking for guesses that have already been hit in a certain area
         """
-        while player_board.board[player_number_of_row][player_letter_of_column] == "*" or player_board.board[player_number_of_row][player_letter_of_column] == "X":
+        while player_board.board[player_number_of_row][player_letter_of_column] == "O" or player_board.board[player_number_of_row][player_letter_of_column] == "X":
             print("You've already guessed this area, try again!")
-            player_number_of_row, player_letter_of_column = Board.user_input(object)
+            player_number_of_row, player_letter_of_column = Ships.user_input(object)
         
         if computer_board.board[player_number_of_row][player_letter_of_column] == "X":
             print("YOU HIT MY BATTLESHIP!")
@@ -126,7 +126,7 @@ def Game():
         
         else:
             print("YOU MISSED")
-            player_board.board[player_number_of_row][player_letter_of_column] = "*"
+            player_board.board[player_number_of_row][player_letter_of_column] = "X"
 
         """
         Now checking for the number of guesses that have been made
