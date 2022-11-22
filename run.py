@@ -138,12 +138,28 @@ def Game():
             break
         else:
             guesses -= 1
-            print(f'You have {guesses} guesses left')
+            print(f'You have {guesses} guesses left!')
 
             if guesses == 0:
                 print("You have lost the game, Better luck next time !")
                 Board.print_board(player_board)
-                break
+                restart_the_game()
+                
+
+def restart_the_game():
+    """ 
+    Here user will get asked if he would like to play the game again
+    if he lost / won.
+    """
+
+    play_again = input("Would you like to play the game again? Y/N?")
+
+    while True:
+        if play_again == "n":
+            exit()
+        elif play_again == "y":
+            Game()
+
 
 if __name__ == '__main__':
     Game()
