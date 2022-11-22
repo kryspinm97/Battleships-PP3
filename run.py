@@ -26,10 +26,10 @@ class Board:
         self.board = board
 
     def print_board(self):
-        print(" A B C D E F G H I J ")
-        number_of_row = 1
+        print("  A B C D E F G H I J ")
+        number_of_row = 0
         for row in self.board:
-            print("%d|%s" % (number_of_row, " | " .join(row)))
+            print("%d|%s" % (number_of_row, "|" .join(row)))
             number_of_row += 1
 
     def columns_to_rows():
@@ -77,20 +77,76 @@ class Ships:
 
     def ships_shot_counter(self):
         ships_shot = 0
-        
+
         for row in self.board:
-            for column in number_of_row:
+            for column in row:
                 if column == "X":
                     ships_shot += 1
         return ships_shot
 
     def random_ships(self):
         for i in range(6):
-            self.number_of_row = random.randint(0, 9)
-            self.letter_of_column = random.randint(0, 9)
+            self.number_of_row = random.randint(0, 6)
+            self.letter_of_column = random.randint(0, 6)
 
             while self.board[self.number_of_row][self.letter_of_column] == "X":
-                self.number_of_row = random.randint(0,9)
-                self.letter_of_column = random.randint(0, 9)
+                self.number_of_row = random.randint(0,6)
+                self.letter_of_column = random.randint(0, 6)
             self.board[self.number_of_row][self.letter_of_column] = "X"
         return self.board
+
+
+def Game():
+    """
+    This is the game run function, where we call our Board object to create the
+    board for the computer and player
+    We set the guesses for the ships shot
+    and Run the game.
+    """
+    player_board = Board([[" "] * 11 for i in range(10)]) 
+    computer_board = Board([[" "] * 11 for i in range(10)])
+    Ships.random_ships(computer_board)
+    guesses = 5 # Set number of guesses of 5
+
+    while guesses > 0:
+        Board.print_board(player_board)
+      
+        player_number_of_row, player_letter_of_column = Ships.user_input(object) # Getting the user input here
+
+        """
+        Checking for guesses that have already been hit in a certain area
+        """
+        while player_board.board[player_number_of_row][player_letter_of_column] == "*" or player_board.board[player_number_of_row][player_letter_of_column] == "X":
+            print("You've already guessed this area, try again!")
+            player_number_of_row, player_letter_of_column = Board.user_input(object)
+        
+        if computer_board.board[player_number_of_row][player_letter_of_column] == "X":
+            print("YOU HIT MY BATTLESHIP!")
+            player_board.board[player_letter_of_column][player_number_of_row] = "O"
+        
+        else:
+            print("YOU MISSED")
+            player_board.board[player_number_of_row][player_letter_of_column] = "*"
+
+        """
+        Now checking for the number of guesses that have been made
+        and deciding if you have won or lost the game
+        """
+
+        if Ships.ships_shot_counter(player_board) == 5:
+            print("YOU'VE DESTROYED ALL THE SHIPS")
+            break
+        else:
+            guesses -= 1
+            print(f'You have {guesses} guesses left')
+
+            if guesses == 0:
+                print("You have lost the game, Better luck next time !")
+                Board.print_board(player_board)
+                break
+
+if __name__ == '__main__':
+    Game()
+
+
+            
