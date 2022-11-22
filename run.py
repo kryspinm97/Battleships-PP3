@@ -75,8 +75,15 @@ class Ships:
             print("Invalid Input!")
             return self.user_input()
 
+    def ships_shot_counter(self):
+        ships_shot = 0
+        
+        for row in self.board:
+            for column in number_of_row:
+                if column == "X":
+                    ships_shot += 1
+        return ships_shot
 
-    
     def random_ships(self):
         for i in range(6):
             self.number_of_row = random.randint(0, 9)
