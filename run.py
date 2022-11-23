@@ -15,6 +15,14 @@ Battleships Game against a Computer
 
 import random # Random for the random placement of the ships on the board
 
+def intro_message():
+  print('\n WELCOME TO THE GAME OF BATTLESHIPS! \n')
+  print('THIS GAME BOARD GRID IS THE SIZE OF 10x10')
+  print('A TO J AND 0 TO 9')
+  print('BATTLE IT OUT AND SEE IF YOU CAN DESTROY ALL COMPUTER WARSHIPS!')
+  print(f'YOU HAVE {guesses} CHOOSE WISELY!')
+
+
 
 class Board:
     """
@@ -118,7 +126,7 @@ def Game():
         """
         while player_board.board[player_number_of_row][player_letter_of_column] == "O" or player_board.board[player_number_of_row][player_letter_of_column] == "X":
             print("You've already guessed this area, try again!")
-            player_number_of_row, player_letter_of_column = Ships.user_input(object)
+            player_letter_of_column, player_number_of_row = Ships.user_input(object)
         
         if computer_board.board[player_number_of_row][player_letter_of_column] == "X":
             print("YOU HIT MY BATTLESHIP!")
@@ -155,9 +163,11 @@ def restart_the_game():
     play_again = input("Would you like to play the game again? Y/N?")
 
     while True:
-        if play_again == "n":
+        
+        if play_again == "N":
+            print("Thank you for playing battleships!")
             exit()
-        elif play_again == "y":
+        elif play_again == "Y":
             Game()
 
 
