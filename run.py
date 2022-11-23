@@ -16,14 +16,17 @@ Battleships Game against a Computer
 import random # Random for the random placement of the ships on the board
 
 def intro_message():
+  """
+  This is an introductory message that will show when the game is first initiated.
+  """
+
   print('\n WELCOME TO THE GAME OF BATTLESHIPS! \n')
   print('THIS GAME BOARD GRID IS THE SIZE OF 10x10')
   print('A TO J AND 0 TO 9')
   print('BATTLE IT OUT AND SEE IF YOU CAN DESTROY ALL COMPUTER WARSHIPS!')
-  print(f'YOU HAVE {guesses} CHOOSE WISELY!')
+  print(f'YOU HAVE {guesses} SO CHOOSE WISELY!')
 
-
-
+  
 class Board:
     """
     Board Class that contains our print board function
@@ -69,16 +72,18 @@ class Ships:
 
     def user_input(self):
         try:
-            number_of_row = input("Please enter the row number of the ship: ")
-            while number_of_row not in "0123456789":
-                print("Invalid Input! Please input a number between 0 and 9")
-                number_of_row = input("Please enter the row number of the ship: ")
-            
             letter_of_column = input("Please enter the column letter of the ship: ")
             while letter_of_column not in "ABCDEFGHIJ":
                 print("Invalid Input!, Please enter a letter between A and J ")
                 letter_of_column = input("Please enter the column letter of the ship: ")
+
+            number_of_row = input("Please enter the row number of the ship: ")
+            while number_of_row not in "0123456789":
+                print("Invalid Input! Please input a number between 0 and 9")
+                number_of_row = input("Please enter the row number of the ship: ")     
+
             return int(number_of_row), Board.columns_to_rows()[letter_of_column]
+
         except ValueError and KeyError:
             print("Invalid Input!")
             return self.user_input()
@@ -114,7 +119,7 @@ def Game():
     player_board = Board([[" "] * 11 for i in range(10)]) 
     computer_board = Board([[" "] * 11 for i in range(10)])
     Ships.random_ships(computer_board)
-    guesses = 5 # Set number of guesses of 5
+    guesses = 10 # Set number of guesses of 5
 
     while guesses > 0:
         Board.print_board(player_board)
