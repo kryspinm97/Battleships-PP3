@@ -1,7 +1,3 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
-
 """
 Battleships Game against a Computer 
 
@@ -20,11 +16,13 @@ def intro_message():
   This is an introductory message that will show when the game is first initiated.
   """
 
-  print('\n WELCOME TO THE GAME OF BATTLESHIPS! \n')
+  print('\nWELCOME TO THE GAME OF BATTLESHIPS!\n')
+  print('-' * 40)
   print('THIS GAME BOARD GRID IS THE SIZE OF 10x10')
   print('A TO J AND 0 TO 9')
   print('BATTLE IT OUT AND SEE IF YOU CAN DESTROY ALL COMPUTER WARSHIPS!')
-  print(f'YOU HAVE {guesses} SO CHOOSE WISELY!')
+  print('YOU HAVE 10 MISSILES SO CHOOSE WISELY!')
+  print('-' * 40)
 
   
 class Board:
@@ -71,6 +69,11 @@ class Ships:
         self.board = board
 
     def user_input(self):
+        """
+        Here we ask the user to input the column letter and the row 
+        number, along with the validation of such inputs incase of
+        any other character or number that is not in range being input.
+        """
         try:
             letter_of_column = input("Please enter the column letter of the ship: ")
             while letter_of_column not in "ABCDEFGHIJ":
@@ -89,6 +92,11 @@ class Ships:
             return self.user_input()
 
     def ships_shot_counter(self):
+        """
+        Here we count our missiles, so for each miss marked as "X"
+        our guess will go down. 
+        It will not go down if you hit a ship.
+        """
         ships_shot = 0
 
         for row in self.board:
@@ -98,13 +106,17 @@ class Ships:
         return ships_shot
 
     def random_ships(self):
-        for i in range(6):
-            self.number_of_row = random.randint(0, 6)
-            self.letter_of_column = random.randint(0, 6)
+        """
+        Here we randomly place 10 ships around the board
+        between 0 and 9.
+        """
+        for i in range(9): 
+            self.number_of_row = random.randint(0, 9)
+            self.letter_of_column = random.randint(0, 9)
 
             while self.board[self.number_of_row][self.letter_of_column] == "X":
-                self.number_of_row = random.randint(0,6)
-                self.letter_of_column = random.randint(0, 6)
+                self.number_of_row = random.randint(0,9)
+                self.letter_of_column = random.randint(0, 9)
             self.board[self.number_of_row][self.letter_of_column] = "X"
         return self.board
 
@@ -113,21 +125,33 @@ def Game():
     """
     This is the game run function, where we call our Board object to create the
     board for the computer and player
-    We set the guesses for the ships shot
+    We set the missiles for the ships shot
     and Run the game.
     """
+    intro_message()
+    
+    player_name = input('Please enter your name: ')
+
+    while True:
+        if  player_name.isalpha():
+            print(f'Welcome {player_name}!')
+            break
+        else:
+            print("Invalid input!, Name must be in letters")
+
+
     player_board = Board([[" "] * 11 for i in range(10)]) 
     computer_board = Board([[" "] * 11 for i in range(10)])
     Ships.random_ships(computer_board)
-    guesses = 10 # Set number of guesses of 5
+    missiles = 10 # Set number of missiles of 10
 
-    while guesses > 0:
+    while missiles > 0:
         Board.print_board(player_board)
-      
+
         player_number_of_row, player_letter_of_column = Ships.user_input(object) # Getting the user input here
 
         """
-        Checking for guesses that have already been hit in a certain area
+        Checking for missiles that have already been hit in a certain area
         """
         while player_board.board[player_number_of_row][player_letter_of_column] == "O" or player_board.board[player_number_of_row][player_letter_of_column] == "X":
             print("You've already guessed this area, try again!")
@@ -142,22 +166,32 @@ def Game():
             player_board.board[player_number_of_row][player_letter_of_column] = "X"
 
         """
-        Now checking for the number of guesses that have been made
+        Now checking for the number of missiles that have been made
         and deciding if you have won or lost the game
         """
 
-        if Ships.ships_shot_counter(player_board) == 5:
+        if Ships.ships_shot_counter(player_board) == 10:
             print("YOU'VE DESTROYED ALL THE SHIPS")
             break
         else:
-            guesses -= 1
-            print(f'You have {guesses} guesses left!')
+            missiles -= 1
+            print(f'You have {missiles} missiles left!')
 
-            if guesses == 0:
+            if missiles == 0:
                 print("You have lost the game, Better luck next time !")
                 Board.print_board(player_board)
                 restart_the_game()
-                
+
+
+def new_game():
+    """
+    Here will be the new game start stating the games rules, welcoming message
+    and the game instance will follow.
+    """
+
+
+
+
 
 def restart_the_game():
     """ 
@@ -174,6 +208,8 @@ def restart_the_game():
             exit()
         elif play_again == "Y":
             Game()
+            
+
 
 
 if __name__ == '__main__':
