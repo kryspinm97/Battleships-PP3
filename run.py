@@ -14,15 +14,17 @@ import random # Random for the random placement of the ships on the board
 def intro_message():
   """
   This is an introductory message that will show when the game is first initiated.
+
   """
 
   print('\nWELCOME TO THE GAME OF BATTLESHIPS!\n')
-  print('-' * 40)
-  print('THIS GAME BOARD GRID IS THE SIZE OF 10x10')
-  print('A TO J AND 0 TO 9')
+  print('*' * 60)
+  print('THE GAME BOARD AREA IS THE SIZE OF 10x10')
+  print('COLUMNS ARE A - J, ROWS ARE 0 TO 9')
   print('BATTLE IT OUT AND SEE IF YOU CAN DESTROY ALL COMPUTER WARSHIPS!')
-  print('YOU HAVE 10 MISSILES SO CHOOSE WISELY!')
-  print('-' * 40)
+  print('YOU HAVE 20 MISSILES SO CHOOSE WISELY!')
+  print('\nGOOD LUCK!\n')
+  print('*' * 60)
 
   
 class Board:
@@ -75,15 +77,15 @@ class Ships:
         any other character or number that is not in range being input.
         """
         try:
-            letter_of_column = input("Please enter the column letter of the ship: ")
+            letter_of_column = input("Please enter the column letter: ")
             while letter_of_column not in "ABCDEFGHIJ":
                 print("Invalid Input!, Please enter a letter between A and J ")
-                letter_of_column = input("Please enter the column letter of the ship: ")
+                letter_of_column = input("Please enter the column letter: ")
 
-            number_of_row = input("Please enter the row number of the ship: ")
+            number_of_row = input("Please enter the row number: ")
             while number_of_row not in "0123456789":
                 print("Invalid Input! Please input a number between 0 and 9")
-                number_of_row = input("Please enter the row number of the ship: ")     
+                number_of_row = input("Please enter the row number: ")     
 
             return int(number_of_row), Board.columns_to_rows()[letter_of_column]
 
