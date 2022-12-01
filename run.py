@@ -43,22 +43,6 @@ class Board:
             print("%d|%s" % (number_row, "|".join(row)))
             number_row += 1
 
-    def columns_to_rows():
-        col_to_row = {
-            "A": 0,
-            "B": 1,
-            "C": 2,
-            "D": 3,
-            "E": 4,
-            "F": 5,
-            "G": 6,
-            "H": 7,
-            "I": 8,
-            "J": 9,
-        }
-
-        return col_to_row
-
 
 class Ships:
     """
@@ -72,6 +56,8 @@ class Ships:
 
     def __init__(self, board):
         self.board = board
+        self.number_row = None
+        self.letter_column = None
 
     def user_input(self):
         """
@@ -90,13 +76,13 @@ class Ships:
                 print("Invalid Input! Please input a number between 0 and 9")
                 number_row = input("Please enter the row number: ")
 
-            return int(number_row), Board.columns_to_rows()[letter_column]
+            return int(number_row), columns_to_rows()[letter_column]
 
-        except ValueError and KeyError:
+        except (ValueError, KeyError):
             print("Invalid Input!")
             return self.user_input()
 
-    def ships_shot_counter(self):
+    def ships_hit(self):
         """
         Here we count the ships shot. Ships are marked as an O.
         """
@@ -124,6 +110,23 @@ class Ships:
         return self.board
 
 
+def columns_to_rows():
+    col_to_row = {
+        "A": 0,
+        "B": 1,
+        "C": 2,
+        "D": 3,
+        "E": 4,
+        "F": 5,
+        "G": 6,
+        "H": 7,
+        "I": 8,
+        "J": 9,
+        }
+
+    return col_to_row
+
+
 def run_game():
     """
     This is the game run function, where we call our Board object to create the
@@ -144,46 +147,43 @@ def run_game():
 
     print("-" * 40)
 
-    player_board = Board([[" "] * 11 for i in range(10)])
+    user_board = Board([[" "] * 11 for i in range(10)])
     computer_board = Board([[" "] * 11 for i in range(10)])
     Ships.random_ships(computer_board)
     missiles = 20  # Set number of missiles of 20
 
     while missiles > 0:
-        Board.print_board(player_board)
+        Board.print_board(user_board)
 
         print("_" * 40)
 
-        player_number_row, player_letter_column = Ships.user_input(
+        user_number_row, user_letter_column = Ships.user_input(
             object
         )  # Getting the user input here
 
         print("_" * 40)
 
-        """
-        Checking for missiles that have already been hit in a certain area
-        """
         while (
-            player_board.board[player_number_row][player_letter_column] == "O"
-            or player_board.board[player_number_row][player_letter_column] == "X"
+            user_board.board[user_number_row][user_letter_column] == "O"
+            or user_board.board[user_number_row][user_letter_column] == "X"
         ):
             print("You've already guessed this area, try again!")
-            player_letter_column, player_number_row = Ships.user_input(object)
+            user_letter_column, user_number_row = Ships.user_input(object)
 
-        if computer_board.board[player_number_row][player_letter_column] == "O":
+        if computer_board.board[user_number_row][user_letter_column] == "O":
             print("You have sunk my battleship!")
-            player_board.board[player_letter_column][player_number_row] = "O"
+            user_board.board[user_letter_column][user_number_row] = "O"
 
         else:
             print("You have missed!")
-            player_board.board[player_number_row][player_letter_column] = "X"
+            user_board.board[user_number_row][user_letter_column] = "X"
 
         """
         Now checking for the number of missiles that have been made
         and deciding if you have won or lost the game
         """
 
-        if Ships.ships_shot_counter(player_board) == 5:
+        if Ships.ships_hit(user_board) == 5:
             print("You have destroyed all the ships on the battlefield!")
             break
         else:
@@ -193,8 +193,9 @@ def run_game():
             if missiles == 0:
                 print("*" * 40)
                 print(f"{player_name}, you have lost the game!")
-                print(f"You have hit {Ships.ships_shot_counter(player_board)} of the ships this game")
-                Board.print_board(player_board)
+                print(
+                    f"You have hit {Ships.ships_hit(user_board)} this game")
+                Board.print_board(user_board)
                 print("*" * 40)
                 restart_the_game()
 
