@@ -3,6 +3,8 @@
 Here I have created a Battleships game that is ran inside the Python Terminal window,
 which is also styled by the Code Institute Terminal Template. 
 
+[!ScreenShot](./readme-images/ami-responsive.png)
+
 
 ## * Game Rules *
 

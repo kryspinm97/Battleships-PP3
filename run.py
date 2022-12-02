@@ -76,7 +76,7 @@ class Ships:
                 print("Invalid Input! Please input a number between 0 and 9")
                 number_row = input("Please enter a row number: ")
 
-            return number_row, columns_to_rows()[letter_column]
+            return int(number_row), columns_to_rows()[letter_column]
 
         except (ValueError, KeyError):
             print("Invalid Input!")
