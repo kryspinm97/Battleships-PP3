@@ -30,7 +30,6 @@ def intro_message():
 class Board:
     """
     Board Class that contains our print board function
-    and the assignment of the Column Letters to Row Numbers.
     """
 
     def __init__(self, board):
@@ -96,10 +95,10 @@ class Ships:
 
     def random_ships(self):
         """
-        Here we randomly place 5 ships around the board
+        Here we randomly place a set amount of ships around the computer board
         Between the rows and columns of 0 and 9.
         """
-        for i in range(5):
+        for i in range(10):
             self.number_row = random.randint(0, 9)
             self.letter_column = random.randint(0, 9)
 
@@ -110,7 +109,7 @@ class Ships:
         return self.board
 
 
-def columns_to_rows():
+def columns_to_rows():  # Assigning the columns to rows
     col_to_row = {
         "A": 0,
         "B": 1,
@@ -134,12 +133,12 @@ def run_game():
     We set the missiles for the ships shot
     and Run the game.
     """
-    intro_message()
+    intro_message()  # Run the welcoming message at start of game
 
     player_name = input("Please enter your name: ")
 
     while True:
-        if player_name.isalpha():
+        if player_name.isalpha():   # only input letters (a-z)
             print(f"Welcome {player_name}!")
             break
         else:
@@ -154,7 +153,7 @@ def run_game():
 
     while missiles > 0:
         Board.print_board(user_board)
-
+        Board.print_board(computer_board)  # Bug fixing
         print("_" * 40)
 
         user_number_row, user_letter_column = Ships.user_input(
@@ -162,6 +161,10 @@ def run_game():
         )  # Getting the user input here
 
         print("_" * 40)
+        """
+        Here we get the validation and also checking for duplicate guesses.
+        If the ship has been hit already, If it hasn't or if it was a miss.
+        """
 
         while (
             user_board.board[user_number_row][user_letter_column] == "O"
@@ -171,7 +174,7 @@ def run_game():
             user_letter_column, user_number_row = Ships.user_input(object)
 
         if computer_board.board[user_number_row][user_letter_column] == "O":
-            print("You have sunk my battleship!")
+            print("\nYou have sunk my battleship!\n")
             user_board.board[user_letter_column][user_number_row] = "O"
 
         else:
@@ -183,9 +186,12 @@ def run_game():
         and deciding if you have won or lost the game
         """
 
-        if Ships.ships_hit(user_board) == 5:
+        if Ships.ships_hit(user_board) == 3:
+            print(f" *** CONGRATULATIONS {player_name} !!")
+            print("-------------------------------------------")
             print("You have destroyed all the ships on the battlefield!")
-            break
+            print("-------------------------------------------")
+            restart_the_game()
         else:
             missiles -= 1
             print(f"You have {missiles} missiles left")

@@ -13,6 +13,14 @@ Misses will be marked as -X
 
 Ships that were hit will be marked as - O
 
+# UX
+
+ * My goal here as the creator of the terminal based game, was to give the user a simple yet grabbing logic game, where you can take a guess at where the enemies battleship position could be along with a score tracker that will display how you managed to get on at the end of the game. Having played this game in my younger days I felt like this was the best project choice for me. 
+
+    * Give the user the ability to play against a computer
+    * Easy to understand instructions / how to play
+    * Ability to go again if so desired
+
 # Features
 
 ## Current Game Features
@@ -25,3 +33,50 @@ Ships that were hit will be marked as - O
     - Columns A - J
     - Rows 0 - 9
 
+4. A counter that counts the ships that were hit during the game and displays them as the score at the end of the game.
+
+5. When the game ends, the player will be prompted a message if he/she would like to play again or not , to see if you can get a better score.
+
+
+# Future Features
+
+* Having the ship sizes larger than 1 point on the grid, such as the Carrier/Battleship/Cruiser/Submarine/Destroyer
+* Give the player the option to set the grid size before the game starts
+* Local Multiplayer mode
+* Give the ability to position the ships for the player
+
+# Testing Stage
+
+I have tested the game with the following steps : 
+
+    1. I have enabled Pylint in the workspace that has checked all my code is up to standard. I had to fix 120+ errors of whitespaces/indentation/variable names and so on. Which has been adjusted for the most part to meet the PEP8 standards.
+    I Have also used the Code Institute's Python Linter as a second check with no issues.
+
+    2. I have done all the input validations tests to best of my knowledge to make sure no special characters can be entered or any inputs that are out of range, wether it was for the user name input or the Row/Column inputs.
+
+    3.I made sure all the columns and rows are corresponding to each other and there is not any out of place information being shown to the user. 
+
+    4. Tested the game by playing a few times myself to record any ongoing / fixed bugs and make sure all features are working as intended.
+
+# Bugs Tracking
+
+## Current Bug :
+
+    1. A bug that I have found that is currently ongoing is when a certain ship will be hit, it will not mark it correctly on the board but will mark the slot on the board somewhere else. 
+
+## Fixed Bugs :
+    1. Fixed a bug where the ships would not count correctly that were hit. Where I had to adjust the ships_hit function to count the correct ship as it was counting the missed ones also.
+
+
+# Deployment
+
+* 
+
+
+# Credits
+* I would like to mention following material that has helped me immensly during this challenging yet engaging project.
+    1. Code institute for the material and neccessary knowledge, also the provided template for this project.
+    2. YouTube for all the battleship tutorials that have guided me along this project.
+    3. Code Institute Slack Community
+    4. Stack Overflow for any general queries regarding issues
+    5. Google for any other queries.
