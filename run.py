@@ -22,6 +22,7 @@ def intro_message():
     print("THE GAME BOARD AREA IS THE SIZE OF 10x10")
     print("COLUMNS ARE A - J, ROWS ARE 0 TO 9")
     print("BATTLE IT OUT AND SEE IF YOU CAN DESTROY ALL COMPUTER WARSHIPS!")
+    print("THE COMPUTER HAS 5 SHIPS HIDDEN ON THE BOARD")
     print("YOU HAVE 20 MISSILES SO CHOOSE WISELY!")
     print("\nGOOD LUCK!\n")
     print("*" * 60)
@@ -75,7 +76,7 @@ class Ships:
                 print("Invalid Input! Please input a number between 0 and 9")
                 number_row = input("Please enter a row number: ")
 
-            return int(number_row), columns_to_rows()[letter_column]
+            return number_row, columns_to_rows()[letter_column]
 
         except (ValueError, KeyError):
             print("Invalid Input!")

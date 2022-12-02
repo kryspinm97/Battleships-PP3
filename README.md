@@ -70,7 +70,7 @@ I have tested the game with the following steps :
 
 ## Remaining Bugs :
 
-    At the moment no further bugs found, if there are any please be kind to notify me!
+    1. If a user writes in a higher value for the row than 11 the game will crash.
 
 # Deployment
 
