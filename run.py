@@ -65,21 +65,21 @@ class Ships:
         any other character or number that is not in range being input.
         """
         try:
-            letter_column = input("Please enter the column letter: ")
+            letter_column = input("Please enter a column letter: ").upper()
             while letter_column not in "ABCDEFGHIJ":
                 print("Invalid Input!, Please enter a letter between A and J ")
-                letter_column = input("Please enter the column letter: ")
+                letter_column = input("Please enter a column letter: ").upper()
 
-            number_row = input("Please enter the row number: ")
+            number_row = input("Please enter a row number: ")
             while number_row not in '0123456789':
                 print("Invalid Input! Please input a number between 0 and 9")
-                number_row = input("Please enter the row number: ")
+                number_row = input("Please enter a row number: ")
 
             return int(number_row), columns_to_rows()[letter_column]
 
         except (ValueError, KeyError):
             print("Invalid Input!")
-            return self.user_input()
+            return Ships.user_input(self)
 
     def ships_hit(self):
         """
@@ -155,11 +155,10 @@ def run_game():
     while missiles > 0:
         Board.print_board(user_board)
         print("_" * 40)
-        user_number_row, user_letter_column = Ships.user_input(
-            object
-        )  # Getting the user input here
 
-        print("_" * 40)
+        user_number_row, user_letter_column = Ships.user_input(object)
+
+        print("-" * 40)
         """
         Here we get the validation and also checking for duplicate guesses.
         If the ship has been hit already, If it hasn't or if it was a miss.
@@ -187,28 +186,28 @@ def run_game():
 
         if Ships.ships_hit(user_board) == 5:
             print(f" *** CONGRATULATIONS {player_name} !!")
-            print("-------------------------------------------")
+            print("-" * 40)
             print("You have destroyed all the ships on the battlefield!")
-            print("-------------------------------------------")
+            print("-" * 40)
             print("Here is a display of the ships you have hit")
             Board.print_board(user_board)
-            print("-------------------------------------------")
+            print("-" * 40)
             restart_the_game()
         else:
             missiles -= 1
             print(f"You have {missiles} missiles left")
-            print("-------------------------------------------")
+            print("-" * 40)
 
             if missiles == 0:
                 print("*" * 40)
                 print(f"{player_name}, you have lost the game!")
-                print("-------------------------------------------")
+                print("-" * 40)
                 print(
                     f"You have hit {Ships.ships_hit(user_board)} ships")
                 print("Better Luck next time!")
-                print("-------------------------------------------")
+                print("-" * 40)
                 Board.print_board(user_board)
-                print("*" * 40)
+                print("-" * 40)
                 restart_the_game()
 
 
@@ -222,7 +221,9 @@ def restart_the_game():
 
     while True:
         if play_again == "N":
+            print("*" * 40)
             print("Thank you for playing Battleships!")
+            print("*" * 40)
             exit()
         elif play_again == "Y":
             run_game()

@@ -58,19 +58,30 @@ I have tested the game with the following steps :
 
     4. Tested the game by playing a few times myself to record any ongoing / fixed bugs and make sure all features are working as intended.
 
+
 # Bugs Tracking
-
-## Current Bug :
-
-    1. A bug that I have found that is currently ongoing is when a certain ship will be hit, it will not mark it correctly on the board but will mark the slot on the board somewhere else. 
 
 ## Fixed Bugs :
     1. Fixed a bug where the ships would not count correctly that were hit. Where I had to adjust the ships_hit function to count the correct ship as it was counting the missed ones also.
 
+    2. Fixed a bug where the ships that were hit were not displayed in the correct location. Fix was an incorrect order of rows/columns in the computer board which had to be swapped around as it was displaying the opposite
+
+    3. Fixed a bug where an empty input into the columns / rows input field would crash the game. Problem was with the return statement under the except(ValueError,KeyError) block.
+
+## Remaining Bugs :
+
+    At the moment no further bugs found, if there are any please be kind to notify me!
 
 # Deployment
 
-* 
+* The project was deployed on the Heroku website using Code Institute's terminal template. Here are the steps I have taken to successfully deploy the project: 
+    
+    1. Create a new repository from the Code Institute template.
+    2. Create a new Heroku account / Register
+    3. Create a new Heroku App
+    4. Set buildpacks to Python and NodeJS in this order.
+    5. Link the Heroku App into the repository on GitHub
+    6. Deploy the App.
 
 
 # Credits
