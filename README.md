@@ -3,8 +3,11 @@
 Here I have created a Battleships game that is ran inside the Python Terminal window,
 which is also styled by the Code Institute Terminal Template. 
 
-[!ScreenShot](./readme-images/ami-responsive.png)
+![ScreenShot](./readme-images/ami-responsive.png)
 
+The live game can be found here : <a href = "https://project-3-battleships.herokuapp.com/">BattleShips</a>
+
+---
 
 ## * Game Rules *
 
@@ -23,22 +26,34 @@ Ships that were hit will be marked as - O
     * Easy to understand instructions / how to play
     * Ability to go again if so desired
 
+---
+
 # Features
 
 ## Current Game Features
 
-1. The player is welcomed with an introductory message that states the games rules , how much missiles the player got and the size of the board with laballed columns and rows.
+* The player is welcomed with an introductory message that states the games rules , how much missiles the player got and the size of the board with laballed columns and rows.
 
-2. The player is asked to enter his/her name before the game starts.
+![ScreenShot](./readme-images/intro-msg.png)
 
-3. The game board is printer and player will be prompted to take a guess where to fire from the 
+* The player is asked to enter his/her name before the game starts.
+
+* The game board is printer and player will be prompted to take a guess where to fire from the 
     - Columns A - J
     - Rows 0 - 9
 
-4. A counter that counts the ships that were hit during the game and displays them as the score at the end of the game.
+![ScreenShot](./readme-images/input-display.png)
 
-5. When the game ends, the player will be prompted a message if he/she would like to play again or not , to see if you can get a better score.
+* A counter that counts the ships that were hit during the game and displays them as the score at the end of the game.
 
+* When the game ends, the player will be prompted a message if he/she would like to play again or not , to see if you can get a better score.
+
+* If a player manages to hit all the ships and win the game, a victory message displays instead!
+
+![ScreenShot](./readme-images/end-of-game.png)
+
+
+---
 
 # Future Features
 
