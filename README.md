@@ -66,24 +66,24 @@ Ships that were hit will be marked as - O
 
 I have tested the game with the following steps : 
 
-    1. I have enabled Pylint in the workspace that has checked all my code is up to standard. I had to fix 120+ errors of whitespaces/indentation/variable names and so on. Which has been adjusted for the most part to meet the PEP8 standards.
-    I Have also used the Code Institute's Python Linter as a second check with no issues.
+1. I have enabled Pylint in the workspace that has checked all my code is up to standard. I had to fix 120+ errors of whitespaces/indentation/variable names and so on. Which has been adjusted for the most part to meet the PEP8 standards.
+I Have also used the Code Institute's Python Linter as a second check with no issues.
 
-    2. I have done all the input validations tests to best of my knowledge to make sure no special characters can be entered or any inputs that are out of range, wether it was for the user name input or the Row/Column inputs.
+2. I have done all the input validations tests to best of my knowledge to make sure no special characters can be entered or any inputs that are out of range, wether it was for the user name input or the Row/Column inputs.
 
-    3.I made sure all the columns and rows are corresponding to each other and there is not any out of place information being shown to the user. 
+3. I made sure all the columns and rows are corresponding to each other and there is not any out of place information being shown to the user. 
 
-    4. Tested the game by playing a few times myself to record any ongoing / fixed bugs and make sure all features are working as intended.
+4. Tested the game by playing a few times myself to record any ongoing / fixed bugs and make sure all features are working as intended.
 
 
 # Bugs Tracking
 
 ## Fixed Bugs :
-    1. Fixed a bug where the ships would not count correctly that were hit. Where I had to adjust the ships_hit function to count the correct ship as it was counting the missed ones also.
+1. Fixed a bug where the ships would not count correctly that were hit. Where I had to adjust the ships_hit function to count the correct ship as it was counting the missed ones also.
 
-    2. Fixed a bug where the ships that were hit were not displayed in the correct location. Fix was an incorrect order of rows/columns in the computer board which had to be swapped around as it was displaying the opposite
+2. Fixed a bug where the ships that were hit were not displayed in the correct location. Fix was an incorrect order of rows/columns in the computer board which had to be swapped around as it was displaying the opposite
 
-    3. Fixed a bug where an empty input into the columns / rows input field would crash the game. Problem was with the return statement under the except(ValueError,KeyError) block.
+3. Fixed a bug where an empty input into the columns / rows input field would crash the game. Problem was with the return statement under the except(ValueError,KeyError) block.
 
 ## Remaining Bugs :
 
